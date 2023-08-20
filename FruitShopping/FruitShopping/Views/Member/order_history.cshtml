@@ -1,0 +1,71 @@
+﻿@section Styles
+	{
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+	<link href="~/css/member/order_history.css" rel="stylesheet" />
+	<link href="~/css/member/bootstrap.min.css" rel="stylesheet" />
+}
+
+<div class="section">
+    <ul>
+        <a asp-controller="Member" asp-action="customer_service">
+        <li>客服訊息</li></a>
+        <a asp-controller="Member" asp-action="favorite_list">
+        <li>收藏清單</li></a>
+        <a asp-controller="Member" asp-action="order_history">
+        <li style="background-color:rgb(79, 85, 232);color:white;">歷史訂單</li></a>
+        <a asp-controller="Member" asp-action="index">
+        <li>會員資料</li></a>
+        <div style="float:none;clear:both;"></div>
+    </ul>
+</div>
+
+<section>
+    <form>
+        <table class="table table-striped table-hover table-bordered" style="width:580px;margin-bottom:40px;">
+            <tr>
+                <td>訂單編號</td>
+                <td>123456789</td>
+            </tr>
+            <tr>
+                <td>訂購日期</td>
+                <td>2023-07-29</td>
+            </tr>
+            <tr>
+                <td>訂單金額</td>
+                <td>$2580</td>
+            </tr>
+            <tr>
+                <td>訂單狀態</td>
+                <td>備貨中</td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: right;">
+                    <button type="submit" class="btn btn-warning" style="color:white;width:60px;border-radius:10%;font-size:12px;">查閱</button>
+                </td>
+            </tr>
+        </table>
+        <table class="table table-striped table-hover table-bordered" style="width:580px;">
+            <tr>
+                <td>訂單編號</td>
+                <td>123456789</td>
+            </tr>
+            <tr>
+                <td>訂購日期</td>
+                <td>2023-07-29</td>
+            </tr>
+            <tr>
+                <td>訂單金額</td>
+                <td>$2580</td>
+            </tr>
+            <tr>
+                <td>訂單狀態</td>
+                <td>備貨中</td>
+            </tr>
+            <tr>
+                <td colspan="2" style="text-align: right;">
+                    <button type="submit" class="btn btn-warning" style="color:white;width:60px;border-radius:10%;font-size:12px;">查閱</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</section>

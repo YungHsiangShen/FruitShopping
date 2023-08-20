@@ -1,0 +1,52 @@
+﻿@section Styles
+{
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+	<link href="~/css/member/member.css" rel="stylesheet" />
+	<link href="~/css/member/bootstrap.min.css" rel="stylesheet" />
+}
+
+<div class="section">
+    <ul>
+        <a asp-controller="Member" asp-action="customer_service">
+        <li>客服訊息</li></a>
+        <a asp-controller="Member" asp-action="favorite_list">
+        <li>收藏清單</li></a>
+        <a asp-controller="Member" asp-action="order_history">
+        <li>歷史訂單</li></a>
+        <a asp-controller="Member" asp-action="index">
+        <li style="background-color:rgb(79, 85, 232);color:white;">會員資料</li></a>
+        <div style="float:none;clear:both;"></div>
+    </ul>
+</div>
+
+<section>
+
+    <div><span><i class="bi bi-person"></i></span> 王曉明</div>
+    <br>
+
+    <form>
+        <table>
+            <tr>
+                <td style="font-weight:bold;">編輯資料</td>
+            </tr>
+            <tr>
+                <td><label for="Name" class="form-label">會員姓名：</label></td>
+                <td><input id="Name" /></td>
+            </tr>
+            <tr>
+                <td><label for="phone" class="form-label">手機號碼：</label></td>
+                <td><input id="phone" /></td>
+            </tr>
+            <tr>
+                <td><label for="phone" class="form-label" style="display:block;text-align:end;">地址：</label></td>
+                <td><input idr="phone" />
+            </tr>
+        </table>
+        <br>
+        <br>
+        <div style="text-align: center;">
+            <button type="submit" class="btn btn-outline-warning" style="width:100px;border-radius:10%;">取消</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="submit" class="btn btn-warning" style="color:white;width:100px;border-radius:10%;">儲存</button>
+        </div>
+    </form>
+</section>

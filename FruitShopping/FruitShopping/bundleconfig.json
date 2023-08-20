@@ -16,5 +16,23 @@
     "inputFiles": [
       "wwwroot/css/site.css"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/css/Adminstyles.min.css",
+    "inputFiles": [
+      "wwwroot/css/Adminstyles.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/Adminscripts.min.js",
+    "inputFiles": [
+      "wwwroot/js/Adminscripts.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/datatables-simple-demo.min.js",
+    "inputFiles": [
+      "wwwroot/js/datatables-simple-demo.js"
+    ]
   }
 ]

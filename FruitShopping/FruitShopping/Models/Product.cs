@@ -40,6 +40,8 @@ namespace FruitShopping.Models
 		[ForeignKey(nameof(InStock))]
 		public int InStockId { get; set; }
 
+		public string ImagePath { get; set; }
+
 		public virtual Supplier Supplier { get; set; }
 
 		public virtual Category Category { get; set; }

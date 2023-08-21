@@ -7,58 +7,95 @@
 			background-color: #d5bdaf;
 			color: #edede9;
 		}
+
+		label {
+			width: 123px;
+		}
 	</style>
 }
 <div class="mx-3 my-3">
 	<form class="d-flex" role="search">
 		<label class="fs-4 me-3">搜尋商品</label>
-		<input class="form-control me-2 w-100" type="search" placeholder="請輸入商品名稱" aria-label="Search">
-		<button class="btn btn-outline-secondary" type="button">新增商品</button>
+		<input class="form-control me-2 w-100" type="text" placeholder="可以透過商品名稱、成本、售價、產品、種類、供應商搜尋商品" v-model="sreachProducts" @@click="filterProducts">
 		<a class="btn btn-outline-secondary">新增商品</a>
 	</form>
 </div>
-<table class="table table-striped table-hover" id="showProducts">
-	<thead>
-		<tr>
-			<th scope="col">No.</th>
-			<th scope="col">產品名稱</th>
-			<th scope="col">成本</th>
-			<th scope="col">售價</th>
-			<th scope="col">產品種類</th>
-			<th scope="col">產地</th>
-			<th scope="col">供應商</th>
-			<th scope="col">編輯</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr v-for="">
-			<th scope="row"></th>
-			<td>Mark</td>
-			<td>Otto</td>
-			<td>test</td>
-			<td>test</td>
-			<td>test</td>
-			<td>test</td>
-		</tr>
-		<tr>
-			<th scope="row">2</th>
-			<td>Jacob</td>
-			<td>Thornton</td>
-			<td>asdfgghh</td>
-		</tr>
-		<tr>
-			<th scope="row">3</th>
-			<td colspan="2">Larry the Bird</td>
-			<td></td>
-		</tr>
-	</tbody>
-</table>
+<div id="showProducts">
+	<table class="table table-striped table-hover">
+		<thead>
+			<tr>
+				<th scope="col">No.</th>
+				<th scope="col">產品名稱</th>
+				<th scope="col">成本</th>
+				<th scope="col">售價</th>
+				<th scope="col">產品種類</th>
+				<th scope="col">產地</th>
+				<th scope="col">供應商</th>
+				<th scope="col" class="col-lg-3">編輯</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr v-for="item in products">
+				<th>{{item.productId}}</th>
+				<td>{{item.productName}}</td>
+				<td>{{item.costPrice}}</td>
+				<td>{{item.unitPrice}}</td>
+				<td>{{item.categoryName}}</td>
+				<td>{{item.supplierName}}</td>
+				<td>{{item.placeOfOriginName}}</td>
+				<td>
+					<button type="button" class="btn btn-secondary"@*  @@click="details" *@>檢視</button>
+					<button type="button" class="btn btn-warning" @* @@click="edit" *@>編輯</button>
+					<button type="button" class="btn btn-danger" @* @@click="productdelete" *@>刪除</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
 @section Scripts
 	{
 	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 	<script>
 		var app = new Vue({
 			el: '#showProducts',
-			})
+			data: {
+				products: [],
+				sreachProducts: ''
+			},
+			mounted: function () {
+				let _this = this;
+				_this.listproducts();
+				_this.filterProducts();
+			},
+			methods: {
+				listproducts: function () {
+					let _this = this;
+					fetch("https://localhost:7099/api/ProductApi/GetAllProducts")
+						.then(response =>
+							response.json())
+						.then(data => _this.products = data);
+				}
+				,
+				filterProducts: function () {
+					let _this = this;
+					var request = {};
+					request.ProductId = isNaN(Number(_this.filter)) ? -1 : Number(_this.filter);
+					request.ProductName = request.CostPrice = request.UnitPrice = request.CategoryName = request.SupplierName = request.PlaceOfOriginName = _this.filterProductId;
+					// request.ProductName = _this.filterProducts;
+					// request.CostPrice = _this.filterProducts;
+					// request.UnitPrice = _this.filterProducts;
+					// request.CategoryName = _this.filterProducts;
+					// request.SupplierName = _this.filterProducts;
+					// request.PlaceOfOriginName = _this.filterProducts;
+					fetch("https://localhost:7099/api/ProductApi/Filter", {
+						method: "POST"
+					}).then(response =>
+						response.json())
+						.then(data => 
+							_this.products = data)
+				}
+			}
+		});
 	</script>
 }

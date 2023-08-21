@@ -34,5 +34,47 @@
     "inputFiles": [
       "wwwroot/js/datatables-simple-demo.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/lib/Admin/chart-area-demo.min.js",
+    "inputFiles": [
+      "wwwroot/lib/Admin/chart-area-demo.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/lib/Admin/chart-bar-demo.min.js",
+    "inputFiles": [
+      "wwwroot/lib/Admin/chart-bar-demo.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/lib/Admin/chart-pie-demo.min.js",
+    "inputFiles": [
+      "wwwroot/lib/Admin/chart-pie-demo.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/lib/Admin/datatables-demo.min.js",
+    "inputFiles": [
+      "wwwroot/lib/Admin/datatables-demo.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/lib/Admin/startbootstrap-sb-admin-gh-pages/css/styles.min.css",
+    "inputFiles": [
+      "wwwroot/lib/Admin/startbootstrap-sb-admin-gh-pages/css/styles.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/lib/Admin/startbootstrap-sb-admin-gh-pages/js/datatables-simple-demo.min.js",
+    "inputFiles": [
+      "wwwroot/lib/Admin/startbootstrap-sb-admin-gh-pages/js/datatables-simple-demo.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/lib/Admin/startbootstrap-sb-admin-gh-pages/js/scripts.min.js",
+    "inputFiles": [
+      "wwwroot/lib/Admin/startbootstrap-sb-admin-gh-pages/js/scripts.js"
+    ]
   }
 ]

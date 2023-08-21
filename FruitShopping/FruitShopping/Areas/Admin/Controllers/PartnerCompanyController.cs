@@ -8,5 +8,13 @@ namespace FruitShopping.Areas.Admin.Controllers
         {
             return View();
         }
+        public IActionResult AdminManager()
+        {
+            return View();
+        }
+        public IActionResult Product()
+        {
+            return View();
+        }
     }
 }

@@ -1,0 +1,57 @@
+﻿@{
+	ViewData["Title"] = "產品管理";
+}
+@section Styles{
+	<style>
+		thead {
+			background-color: #d5bdaf;
+			color: #edede9;
+		}
+	</style>
+}
+<div class="mx-3 my-3">
+	<form class="d-flex" role="search">
+		<label class="fs-4 me-3">搜尋商品</label>
+		<input class="form-control me-2 w-100" type="search" placeholder="請輸入商品名稱" aria-label="Search">
+		<button class="btn btn-outline-secondary" type="button">新增商品</button>
+		<a class="btn btn-outline-secondary">新增商品</a>
+	</form>
+</div>
+<table class="table">
+	<thead>
+		<tr>
+			<th scope="col">No</th>
+			<th scope="col">產品名稱</th>
+			<th scope="col">成本</th>
+			<th scope="col">售價</th>
+			<th scope="col">產品種類</th>
+			<th scope="col">產地</th>
+			<th scope="col">供應商</th>
+			<th scope="col"></th>
+			<th scope="col"></th>
+
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<th scope="row">1</th>
+			<td>Mark</td>
+			<td>Otto</td>
+			<td>test</td>
+			<td>test</td>
+			<td>test</td>
+			<td>test</td>
+		</tr>
+		<tr>
+			<th scope="row">2</th>
+			<td>Jacob</td>
+			<td>Thornton</td>
+			<td>asdfgghh</td>
+		</tr>
+		<tr>
+			<th scope="row">3</th>
+			<td colspan="2">Larry the Bird</td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>

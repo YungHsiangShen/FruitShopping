@@ -5,7 +5,7 @@ namespace FruitShopping.Areas.Admin.Controllers
     [Area("Admin")]
     public class AdminHomeController : Controller
     {
-        public IActionResult AdminHome()
+        public IActionResult ProductManager()
         {
             return View();
         }

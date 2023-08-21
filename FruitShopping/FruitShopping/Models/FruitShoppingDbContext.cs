@@ -18,6 +18,7 @@ namespace FruitShopping.Models
 		public DbSet<ShoppingCart> ShoppingCarts { get; set; }
 		public DbSet<Supplier> Suppliers { get; set; }
 		public DbSet<UpDataType> UpDataTypes { get; set; }
+		public DbSet<PlaceOfOrigin> placeOfOrigins { get; set; }
 
 		public DbSet<ProductComment> ProductComments { get; set; }
 

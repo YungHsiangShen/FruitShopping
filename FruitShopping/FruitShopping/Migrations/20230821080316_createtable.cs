@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FruitShopping.Migrations
 {
     /// <inheritdoc />
-    public partial class UpDate : Migration
+    public partial class createtable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -77,6 +77,19 @@ namespace FruitShopping.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_InStocks", x => x.InStockId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "placeOfOrigins",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_placeOfOrigins", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -270,12 +283,14 @@ namespace FruitShopping.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProductName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     ProductDescription = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: true),
+                    CostPrice = table.Column<decimal>(type: "decimal(16,2)", nullable: false),
                     UnitPrice = table.Column<decimal>(type: "decimal(16,2)", nullable: false),
                     CategoryId = table.Column<int>(type: "int", nullable: false),
                     SupplierId = table.Column<int>(type: "int", nullable: false),
                     UnitStock = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    PlaceOfOriginId = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    InStockId = table.Column<int>(type: "int", nullable: false)
+                    PlaceOfOriginId = table.Column<int>(type: "int", nullable: false),
+                    InStockId = table.Column<int>(type: "int", nullable: false),
+                    ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -291,6 +306,12 @@ namespace FruitShopping.Migrations
                         column: x => x.SupplierId,
                         principalTable: "Suppliers",
                         principalColumn: "SupplierId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Products_placeOfOrigins_PlaceOfOriginId",
+                        column: x => x.PlaceOfOriginId,
+                        principalTable: "placeOfOrigins",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -433,6 +454,11 @@ namespace FruitShopping.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Products_PlaceOfOriginId",
+                table: "Products",
+                column: "PlaceOfOriginId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Products_SupplierId",
                 table: "Products",
                 column: "SupplierId");
@@ -501,6 +527,9 @@ namespace FruitShopping.Migrations
 
             migrationBuilder.DropTable(
                 name: "Suppliers");
+
+            migrationBuilder.DropTable(
+                name: "placeOfOrigins");
         }
     }
 }

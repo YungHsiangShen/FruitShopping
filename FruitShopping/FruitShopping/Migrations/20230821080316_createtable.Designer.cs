@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FruitShopping.Migrations
 {
     [DbContext(typeof(FruitShoppingDbContext))]
-    [Migration("20230818115406_UpDate")]
-    partial class UpDate
+    [Migration("20230821080316_createtable")]
+    partial class createtable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -159,6 +159,22 @@ namespace FruitShopping.Migrations
                     b.ToTable("OrderDetails");
                 });
 
+            modelBuilder.Entity("FruitShopping.Models.PlaceOfOrigin", b =>
+                {
+                    b.Property<int?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("placeOfOrigins");
+                });
+
             modelBuilder.Entity("FruitShopping.Models.Product", b =>
                 {
                     b.Property<int>("ProductId")
@@ -170,13 +186,19 @@ namespace FruitShopping.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
+                    b.Property<decimal>("CostPrice")
+                        .HasColumnType("decimal(16,2)");
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("InStockId")
                         .HasColumnType("int");
 
-                    b.Property<string>("PlaceOfOriginId")
+                    b.Property<int?>("PlaceOfOriginId")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar");
+                        .HasColumnType("int");
 
                     b.Property<string>("ProductDescription")
                         .HasMaxLength(2000)
@@ -200,6 +222,8 @@ namespace FruitShopping.Migrations
                     b.HasKey("ProductId");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("PlaceOfOriginId");
 
                     b.HasIndex("SupplierId");
 
@@ -583,6 +607,12 @@ namespace FruitShopping.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("FruitShopping.Models.PlaceOfOrigin", "PlaceOfOrigin")
+                        .WithMany("Products")
+                        .HasForeignKey("PlaceOfOriginId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("FruitShopping.Models.Supplier", "Supplier")
                         .WithMany("Products")
                         .HasForeignKey("SupplierId")
@@ -590,6 +620,8 @@ namespace FruitShopping.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
+
+                    b.Navigation("PlaceOfOrigin");
 
                     b.Navigation("Supplier");
                 });
@@ -676,6 +708,11 @@ namespace FruitShopping.Migrations
                 });
 
             modelBuilder.Entity("FruitShopping.Models.Category", b =>
+                {
+                    b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("FruitShopping.Models.PlaceOfOrigin", b =>
                 {
                     b.Navigation("Products");
                 });

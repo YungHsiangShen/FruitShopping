@@ -14,11 +14,23 @@ namespace FruitShopping
 			var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 			builder.Services.AddDbContext<FruitShoppingDbContext>(options =>
 				options.UseSqlServer(connectionString));
+			
 			builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+			var MyAllowSpecifficOrigina = "AllowAny";
+			builder.Services.AddCors(option =>
+				option.AddPolicy(
+					name: MyAllowSpecifficOrigina,
+					policy =>
+					policy.AllowAnyOrigin()
+					.WithHeaders("*")
+					.WithMethods("*")
+					)
+			);
 
 			builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
 				.AddEntityFrameworkStores<FruitShoppingDbContext>();
+			
 			builder.Services.AddControllersWithViews();
 
 			var app = builder.Build();
@@ -35,10 +47,14 @@ namespace FruitShopping
 				app.UseHsts();
 			}
 
+			
+
 			app.UseHttpsRedirection();
 			app.UseStaticFiles();
 
 			app.UseRouting();
+
+			app.UseCors();
 
 			app.UseAuthorization();
 

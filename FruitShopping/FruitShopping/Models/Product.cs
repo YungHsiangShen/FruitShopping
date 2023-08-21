@@ -20,6 +20,9 @@ namespace FruitShopping.Models
         [MaxLength(2000)]
         public string? ProductDescription { get; set; }
 
+		[Column(TypeName ="decimal(16,2)")]
+		public decimal CostPrice { get; set; }
+
 		[Column(TypeName = "decimal(16,2)")]
 		public decimal UnitPrice { get; set; }
 		
@@ -32,10 +35,9 @@ namespace FruitShopping.Models
 		[Column(TypeName = "nvarchar")]
 		[MaxLength(50)]
 		public string? UnitStock { get; set; }
-		
-		[Column(TypeName = "nvarchar")]
-        [MaxLength(50)]
-        public string PlaceOfOriginId { get; set; }
+
+		[ForeignKey(nameof(PlaceOfOrigin))]
+        public int? PlaceOfOriginId { get; set; }
 
 		[ForeignKey(nameof(InStock))]
 		public int InStockId { get; set; }
@@ -47,6 +49,8 @@ namespace FruitShopping.Models
 		public virtual Category Category { get; set; }
 
 		public virtual ICollection<ShoppingCart> ShoppingCarts { get; set; }
+
+		public virtual PlaceOfOrigin PlaceOfOrigin { get; set; }
 
 	}
 }

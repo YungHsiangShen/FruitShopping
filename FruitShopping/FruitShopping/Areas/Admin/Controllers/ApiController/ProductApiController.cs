@@ -42,21 +42,28 @@ namespace FruitShopping.Areas.Admin.Controllers.ApiController
 		[HttpPost("FilterProduct")]
 		public async Task<IEnumerable<ProductsManagershowDTO>> FilterProduct([FromBody] ProductsManagershowDTO pmDTO)
 		{
-			 return _db.Products
-			.Include(p => p.Category)
-			.Include(p => p.Supplier)
-			.Where(p =>
-				p.ProductId == pmDTO.ProductId ||
-				p.ProductName.Contains(pmDTO.ProductName) ||
-				p.Category.CategoryName.Contains(pmDTO.CategoryName) ||
-				p.Supplier.ContactName.Contains(pmDTO.SupplierName))
-				.Select(p => new ProductsManagershowDTO
+			var query = _db.Products
+		   .Include(p => p.Category)
+		   .Include(p => p.Supplier)
+		   .Where(p =>
+			   p.ProductId == pmDTO.ProductId ||
+			   p.ProductName.Contains(pmDTO.ProductName) ||
+			   p.Category.CategoryName.Contains(pmDTO.CategoryName) ||
+			   p.Supplier.ContactName.Contains(pmDTO.SupplierName) ||
+			   (p.CostPrice >= pmDTO.CostPrice) ||
+			   (p.UnitPrice >= pmDTO.UnitPrice) ||
+			   p.PlaceOfOrigin.Name.Contains(pmDTO.PlaceOfOriginName))
+		   .Select(p => new ProductsManagershowDTO
 			{
 				ProductId = p.ProductId,
 				ProductName = p.ProductName,
 				CategoryName = p.Category.CategoryName,
 				SupplierName = p.Supplier.ContactName,
+				CostPrice = p.CostPrice,
+				UnitPrice = p.UnitPrice,
+				PlaceOfOriginName = p.PlaceOfOrigin.Name
 			});
+			return query;
 		}
 	}
 }

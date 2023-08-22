@@ -67,7 +67,7 @@
 			},
 			mounted: function () {
 				let _this = this;
-				_this.listproducts();
+				// _this.listproducts();
 				_this.filterProducts();
 			},
 			methods: {
@@ -82,7 +82,7 @@
 					let _this = this;
 					var request = {};
 					request.ProductId = isNaN(Number(_this.sreachProducts)) ? -1 : Number(_this.sreachProducts);
-					request.ProductName = request.CategoryName = request.SupplierName = request.PlaceOfOriginName = _this.sreachProducts;
+					request.ProductName = request.CategoryName = request.SupplierName = request.PlaceOfOriginName = request.CostPrice = request.UnitPrice = _this.sreachProducts;
 					fetch("https://localhost:7099/api/ProductApi/FilterProduct/FilterProduct", {
 						method: "POST",
 						headers: {
@@ -92,10 +92,16 @@
 						body: JSON.stringify(request)
 					}).then(response =>
 						response.json())
-						.then(data =>
-							_this.products = data)
+						.then(data => {
+							_this.products = data;
+							for (var i = 0; i < _this.products.length; i++) {
+								var item = _this.products[i];
+							}
+						})
 				}
 			}
 		});
 	</script>
 }
+@* request.CostPrice = request.UnitPrice = *@
+@*  request.CostPrice = request.UnitPrice =  *@

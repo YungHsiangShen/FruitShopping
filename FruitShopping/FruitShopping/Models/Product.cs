@@ -37,7 +37,7 @@ namespace FruitShopping.Models
 		public string? UnitStock { get; set; }
 
 		[ForeignKey(nameof(PlaceOfOrigin))]
-        public int? PlaceOfOriginId { get; set; }
+        public int PlaceOfOriginId { get; set; }
 
 		[ForeignKey(nameof(InStock))]
 		public int InStockId { get; set; }

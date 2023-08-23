@@ -9,7 +9,10 @@
  * Copyright 2011-2022 The Bootstrap Authors
  * Copyright 2011-2022 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+    
  */
+@import url('../lib/bootstrap/dist/css/bootstrap.min.css');
+@import url('../lib/bootstrap/dist/js/bootstrap.bundle.min.js');
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -11313,4 +11316,9 @@ section#contact form#contactForm :-ms-input-placeholder {
   text-align: center;
   font-size: 0.9rem;
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+
+.hide {
+    color:red;
 }

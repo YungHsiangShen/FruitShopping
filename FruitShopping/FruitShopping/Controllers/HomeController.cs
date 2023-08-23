@@ -17,8 +17,11 @@ namespace FruitShopping.Controllers
 		{
 			return View();
 		}
-
-		public IActionResult Privacy()
+        public IActionResult About()
+        {
+            return View();
+        }
+        public IActionResult Privacy()
 		{
 			return View();
 		}

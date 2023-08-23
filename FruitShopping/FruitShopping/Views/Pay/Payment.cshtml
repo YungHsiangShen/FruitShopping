@@ -1,0 +1,79 @@
+﻿@section Styles
+    {
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/product/product.css" rel="stylesheet" />
+    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+
+
+    <style>
+
+    </style>
+}
+
+
+<div class="container" style="margin-top: 120px;margin-bottom: 50px;">
+    <h2>購物車</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">商品名稱</th>
+                <th scope="col">商品價格</th>
+                <th scope="col">數量</th>
+                <th scope="col">小計</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row"><img src="~/image/fruit/grape/p32.jpg" style="width: 10%; height: 10%;">青蘋果</th>
+                <td>$350</td>
+                <td>
+                    <form id="myform">
+                        <input type="button" value="-" class="qtyminus" field="quantity" />
+                        <input type="text" name="quantity" value="0" class="qty" style="width: 30px;" />
+                        <input type="button" value="+" class="qtyplus" field="quantity" />
+                    </form>
+                </td>
+                <td>$350</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>送貨及付款方式</h2>
+    <div style="margin-bottom: 50px;">
+        <form>
+            <label>國家</label><br>
+            <select>
+                <option>台灣</option>
+                <option>香港</option>
+                <option>澳門</option>
+            </select><br>
+            <label>送貨方式</label><br>
+            <select>
+                <option>711取貨不付款</option>
+                <option>黑貓宅配</option>
+            </select><br>
+            <label>付款方式</label><br>
+            <select>
+                <option>信用卡</option>
+                <option>銀行轉帳</option>
+                <option>LINE PAY</option>
+            </select><br>
+        </form>
+    </div>
+
+    <h2>結帳資訊</h2>
+    <div style="margin-bottom: 50px;">
+        <span>小計</span>
+        <span>NT350</span>
+        <br>
+        <span>運費</span>
+        <span>NT60</span>
+        <br>
+        <span>購物金折抵</span>
+        <span>NT60</span>
+        <br>
+    </div>
+
+    <button type="button">結帳</button>
+</div>

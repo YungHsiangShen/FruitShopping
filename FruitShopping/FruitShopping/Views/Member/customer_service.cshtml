@@ -4,7 +4,7 @@
 	<link href="~/css/member/customer_service.css" rel="stylesheet" />
 	<link href="~/css/member/bootstrap.min.css" rel="stylesheet" />
 }
-
+<div id="app">
 <div class="section">
     <ul>
         <a asp-controller="Member" asp-action="customer_service">
@@ -20,27 +20,70 @@
 </div>
 
 <section>
-    <ul>
-        <li>
-            <div style="background-color:rgb(211, 211, 211)"></div>
+        <ul v-for="p in showProduct">
+        <li style="position:relative">            
+            <i class="bi bi-house" style="top:150px;left:-70px"></i>
+            <div style="background-color:rgb(211, 211, 211);">{{p.customerMessage}}</div>
         </li>
-        <li>
-            <div></div>
+        <li style="position:relative">            
+            <div>{{p.adminMessage}}</div>
+            <i class="bi bi-person" style="top:-120px;left:300px"></i>
         </li>
-        <li>
-            <div style="background-color:rgb(211, 211, 211)"></div>
-        </li>
-        <li>
-            <div></div>
-        </li>
-        <i class="bi bi-house" style="top:150px;left:-40px"></i>
-        <i class="bi bi-house" style="top:430px;left:-40px"></i>
-        <i class="bi bi-person" style="top:20px;left:330px"></i>
-        <i class="bi bi-person" style="top:290px;left:330px"></i>
     </ul>
-
+        <article class="mt-1" style="margin-left:150px;">
+            <paginate :page-count="2"
+                      :container-class="'pagination'"
+                      :page-class="'page-item'"
+                      :page-link-class="'page-link'"
+                      :prev-class="'page-item'"
+                      :prev-link-class="'page-link'"
+                      :next-class="'page-link'"
+                      :next-link-class="'page-item'"
+                      :click-handler="changePage">
+            </paginate>
+        </article>
     <textarea name="" id="" cols="50" rows="5" placeholder="請輸入文字" style="display: block;margin-left:420px;"></textarea>
     <br>
     <button type="submit" class="btn btn-warning" style="color:white;width:100px;border-radius:10%;display: block;margin-left:725px;">儲存</button>
-
+        
 </section>
+</div>
+@section Scripts
+    {
+    <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <script>
+        var baseAddress = "https://localhost:7099";
+        Vue.component('paginate', VuejsPaginate);
+        let app = new Vue({
+            el: "#app",
+            data: {
+                currentPage: 1,      //Vue分頁用
+                itemPerPage: 2,      //Vue分頁用，一頁要幾筆
+                products: []
+
+            },
+            computed: {                     //Vue分頁功能用
+                showProduct: function () {
+                    var start = (this.currentPage - 1) * this.itemPerPage;
+                    var end = start + this.itemPerPage;
+                    return this.products.slice(start, end) //Vue分頁過篩
+                }
+            },
+            mounted: function () {
+                this.getProducts();
+            },
+            methods: {
+                getProducts: function () {
+                    let self = this
+                    fetch(`${baseAddress}/api/Member/GetCustomerService`
+                    ).then(x => x.json()).then(z => self.products = z)
+                },
+                changePage: function (num) {    //Vue分頁用
+                    this.currentPage = num;
+                }
+            }
+        })
+    </script>
+}

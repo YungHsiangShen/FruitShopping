@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\lib\datatables\**" />
+    <Content Remove="wwwroot\lib\datatables\**" />
+    <EmbeddedResource Remove="wwwroot\lib\datatables\**" />
+    <None Remove="wwwroot\lib\datatables\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="bundleconfig.json" />
   </ItemGroup>
 

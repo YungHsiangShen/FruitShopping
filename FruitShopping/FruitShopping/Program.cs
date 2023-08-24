@@ -13,7 +13,7 @@ namespace FruitShopping
 			// Add services to the container.
 			var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 			builder.Services.AddDbContext<FruitShoppingDbContext>(options =>
-				options.UseSqlServer(connectionString));
+				options.UseLazyLoadingProxies().UseSqlServer(connectionString));
 			
 			builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
@@ -52,6 +52,8 @@ namespace FruitShopping
 			app.UseHttpsRedirection();
 			app.UseStaticFiles();
 
+			app.UseFileServer();
+
 			app.UseRouting();
 
 			app.UseCors();
@@ -66,6 +68,8 @@ namespace FruitShopping
 				name: "default",
 				pattern: "{controller=Home}/{action=Index}/{id?}");
 			app.MapRazorPages();
+
+			
 
 			app.Run();
 		}

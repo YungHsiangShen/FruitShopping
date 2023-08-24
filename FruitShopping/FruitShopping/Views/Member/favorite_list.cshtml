@@ -5,6 +5,7 @@
 	<link href="~/css/member/bootstrap.min.css" rel="stylesheet" />
 }
 
+<div id="app">
 <div class="section">
     <ul>
         <a asp-controller="Member" asp-action="customer_service">
@@ -29,28 +30,66 @@
                 <td>加入購物車</i></td>
                 <td>刪除</td>
             </tr>
-            <tr>
-                <td><img src="~/image/fruit/cherry/p25.jpg" alt=""></td>
-                <td>青蘋果</td>
-                <td>$350</td>
+                <tr v-for="p in showProduct">
+                    <td><img src="~/image/fruit/mango/p05.jpg" alt=""></td>
+                    <td>{{p.favoriteName}}</td>
+                    <td>{{p.favoritePrice}}</td>
                 <td><i class="bi bi-cart3"></i></td>
                 <td><i class="bi bi-trash"></i></td>
             </tr>
-            <tr>
-                <td><img src="~/image/fruit/mango/p05.jpg" alt=""></td>
-                <td>青蘋果</td>
-                <td>$350</td>
-                <td><i class="bi bi-cart3"></i></td>
-                <td><i class="bi bi-trash"></i></td>
-            </tr>
-            <tr>
-                <td><img src="~/image/fruit/pineapple/p19.jpg" alt=""></td>
-                <td>青蘋果</td>
-                <td>$350</td>
-                <td><i class="bi bi-cart3"></i></td>
-                <td><i class="bi bi-trash"></i></td>
-            </tr>
-
         </table>
     </form>
+        <div class="mt-5 d-flex justify-content-center">
+            <paginate :page-count="2"
+                      :container-class="'pagination'"
+                      :page-class="'page-item'"
+                      :page-link-class="'page-link'"
+                      :prev-class="'page-item'"
+                      :prev-link-class="'page-link'"
+                      :next-class="'page-link'"
+                      :next-link-class="'page-item'"
+                      :click-handler="changePage">
+            </paginate>
+        </div>
 </section>
+</div>
+
+@section Scripts
+    {
+    <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <script>
+        var baseAddress = "https://localhost:7099";
+        Vue.component('paginate', VuejsPaginate);
+        let app = new Vue({
+            el: "#app",
+            data: {
+                currentPage: 1,      //Vue分頁用
+                itemPerPage: 2,      //Vue分頁用，一頁要幾筆
+                products: []
+            },
+            computed: {                     //Vue分頁功能用
+                showProduct: function () {
+                    var start = (this.currentPage - 1) * this.itemPerPage;
+                    var end = start + this.itemPerPage;
+                    return this.products.slice(start, end) //Vue分頁過篩
+                }
+            },
+            mounted: function () {
+                this.getProducts();
+            },
+            methods: {
+                getProducts: function () {
+                    let self = this
+                    fetch(`${baseAddress}/api/Member/GetFavoriteList`
+                    ).then(x => x.json()).then(z => self.products = z)
+                },
+                changePage: function (num) {    //Vue分頁用
+                    this.currentPage = num;
+                }
+            }
+
+        })
+    </script>
+}

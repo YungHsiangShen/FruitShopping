@@ -5,6 +5,7 @@
 	<link href="~/css/member/bootstrap.min.css" rel="stylesheet" />
 }
 
+<div id="app">
 <div class="section">
     <ul>
         <a asp-controller="Member" asp-action="customer_service">
@@ -19,9 +20,9 @@
     </ul>
 </div>
 
-<section>
+    <section>
 
-    <div><span><i class="bi bi-person"></i></span> 王曉明</div>
+        <div><span><i class="bi bi-person"></i></span>王曉明{{products.phone}}</div>
     <br>
 
     <form>
@@ -50,3 +51,31 @@
         </div>
     </form>
 </section>
+</div>
+
+@section Scripts
+{
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+
+    <script>
+        var baseAddress = "https://localhost:7099";
+
+        let app = new Vue({
+            el: "#app",
+            data: {
+                products: []
+            },
+            mounted: function () {
+                this.getProducts();
+            },
+            methods: {
+                getProducts: function () {
+                    let self = this
+                    fetch(`${baseAddress}/api/Member/GetMember`
+                    ).then(x => x.json()).then(z => self.products = z)
+                }
+            }
+
+        })
+    </script>
+}

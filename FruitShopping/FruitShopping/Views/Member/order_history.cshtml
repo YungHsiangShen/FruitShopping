@@ -3,8 +3,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 	<link href="~/css/member/order_history.css" rel="stylesheet" />
 	<link href="~/css/member/bootstrap.min.css" rel="stylesheet" />
+
 }
 
+<div id="app">
 <div class="section">
     <ul>
         <a asp-controller="Member" asp-action="customer_service">
@@ -20,52 +22,81 @@
 </div>
 
 <section>
-    <form>
-        <table class="table table-striped table-hover table-bordered" style="width:580px;margin-bottom:40px;">
-            <tr>
+    <form>          @*使用Vue分頁過篩後的內容 *@
+            <table v-for="p in showProduct" class="table table-striped table-hover table-bordered" style="width:580px;margin-bottom:40px;">
+                <tr>
                 <td>訂單編號</td>
-                <td>123456789</td>
+                    <td>{{p.orderId}}</td>
             </tr>
             <tr>
                 <td>訂購日期</td>
-                <td>2023-07-29</td>
+                    <td>{{p.orderDate}}</td>
             </tr>
             <tr>
                 <td>訂單金額</td>
-                <td>$2580</td>
+                    <td>${{p.orderPrice}}</td>
             </tr>
             <tr>
                 <td>訂單狀態</td>
-                <td>備貨中</td>
+                    <td>{{p.orderStatus}}</td>
             </tr>
             <tr>
                 <td colspan="2" style="text-align: right;">
                     <button type="submit" class="btn btn-warning" style="color:white;width:60px;border-radius:10%;font-size:12px;">查閱</button>
                 </td>
             </tr>
-        </table>
-        <table class="table table-striped table-hover table-bordered" style="width:580px;">
-            <tr>
-                <td>訂單編號</td>
-                <td>123456789</td>
-            </tr>
-            <tr>
-                <td>訂購日期</td>
-                <td>2023-07-29</td>
-            </tr>
-            <tr>
-                <td>訂單金額</td>
-                <td>$2580</td>
-            </tr>
-            <tr>
-                <td>訂單狀態</td>
-                <td>備貨中</td>
-            </tr>
-            <tr>
-                <td colspan="2" style="text-align: right;">
-                    <button type="submit" class="btn btn-warning" style="color:white;width:60px;border-radius:10%;font-size:12px;">查閱</button>
-                </td>
-            </tr>
-        </table>
+            </table>
     </form>
+                        @* Vue分頁用 *@
+        <div class="mt-1" style="margin-left:220px;">
+            <paginate :page-count="2"
+                      :container-class="'pagination'"
+                      :page-class="'page-item'"
+                      :page-link-class="'page-link'"
+                      :prev-class="'page-item'"
+                      :prev-link-class="'page-link'"
+                      :next-class="'page-link'"
+                      :next-link-class="'page-item'"
+                      :click-handler="changePage">
+            </paginate>
+            </div>
 </section>
+</div>
+@section Scripts
+    {
+    <script src="https://unpkg.com/vuejs-paginate@0.9.0"></script>        @*  Vue分頁用 *@
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+        var baseAddress = "https://localhost:7099";
+        Vue.component('paginate', VuejsPaginate);   //Vue分頁用
+        let app = new Vue({
+            el: "#app",
+            data: {
+                currentPage:1,      //Vue分頁用
+                itemPerPage:2,      //Vue分頁用，一頁要幾筆
+                products: []
+            },
+            computed: {                     //Vue分頁功能用
+               showProduct:function(){
+                    var start = (this.currentPage - 1) * this.itemPerPage;
+                    var end = start + this.itemPerPage;
+                   return this.products.slice(start,end) //Vue分頁過篩
+               }
+            },
+            mounted: function () {
+                this.getProducts();
+            },
+            methods: {
+                getProducts: function () {
+                    let self = this
+                    fetch(`${baseAddress}/api/Member/GetOrderHistory`
+                    ).then(x => x.json()).then(z => self.products = z)
+                },
+                changePage: function (num) {    //Vue分頁用
+                    this.currentPage = num;
+                }
+            }
+
+        })
+    </script>
+}

@@ -30,7 +30,7 @@ namespace FruitShopping.Models
 					.SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
 					.AddJsonFile("appsetting.json")
 					.Build();
-				optionsBuilder.UseSqlServer(Config.GetConnectionString("DefaultConnection"));
+				optionsBuilder.UseLazyLoadingProxies().UseSqlServer(Config.GetConnectionString("DefaultConnection"));
 			}
 		}
 	}

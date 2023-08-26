@@ -13,7 +13,7 @@ namespace FruitShopping.Controllers.Api
             { 
                 new MemberDTO(){UserName="Jack",Phone="0988345345",Address="新北市土城"},
                 new MemberDTO(){UserName="Mary",Phone="0932456781",Address="新北市板橋"},
-                new MemberDTO(){UserName="Mark",Phone="0986583924",Address="新北市樹林"},
+                new MemberDTO(){UserName="Mark",Phone="0986583924",Address="新北市樹林"}
             };
         }
 
@@ -32,11 +32,11 @@ namespace FruitShopping.Controllers.Api
         {
             return new List<FavoriteListDTO>()
             {
-                new FavoriteListDTO(){ FavoriteImg="~/Image/fruit/cherry/p26.jpg",FavoriteName="櫻桃",FavoritePrice=453},
-                new FavoriteListDTO(){ FavoriteImg="~/Image/fruit/fruitcup/p43.jpg",FavoriteName="水果杯",FavoritePrice=334},
-                new FavoriteListDTO(){ FavoriteImg="~/Image/fruit/grape/p29.jpg",FavoriteName="葡萄",FavoritePrice=112},
-                new FavoriteListDTO(){ FavoriteImg="~/Image/fruit/mango/p07.jpg",FavoriteName="芒果",FavoritePrice=238},
-                new FavoriteListDTO(){ FavoriteImg="~/Image/fruit/pineapple/p20.jpg",FavoriteName="鳳梨",FavoritePrice=449},
+                new FavoriteListDTO(){ FavoriteImg="/Image/fruit/cherry/p26.jpg",FavoriteName="櫻桃",FavoritePrice=453},
+                new FavoriteListDTO(){ FavoriteImg="/Image/fruit/fruitcup/p43.jpg",FavoriteName="水果杯",FavoritePrice=334},
+                new FavoriteListDTO(){ FavoriteImg="/Image/fruit/grape/p29.jpg",FavoriteName="葡萄",FavoritePrice=112},
+                new FavoriteListDTO(){ FavoriteImg="/Image/fruit/mango/p07.jpg",FavoriteName="芒果",FavoritePrice=238},
+                new FavoriteListDTO(){ FavoriteImg="/Image/fruit/pineapple/p20.jpg",FavoriteName="鳳梨",FavoritePrice=449}
             };
         }
 

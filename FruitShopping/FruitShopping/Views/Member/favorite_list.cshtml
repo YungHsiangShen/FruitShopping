@@ -27,11 +27,11 @@
                 <td></td>
                 <td>商品名稱</td>
                 <td>價格</td>
-                <td>加入購物車</i></td>
+                <td>加入購物車</td>
                 <td>刪除</td>
             </tr>
                 <tr v-for="p in showProduct">
-                    <td><img src="~/image/fruit/mango/p05.jpg" alt=""></td>
+                    <td><img :src="p.favoriteImg" alt=""></td>
                     <td>{{p.favoriteName}}</td>
                     <td>{{p.favoritePrice}}</td>
                 <td><i class="bi bi-cart3"></i></td>

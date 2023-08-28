@@ -22,7 +22,7 @@
 
     <section>
 
-        <div><span><i class="bi bi-person"></i></span>王曉明{{products.phone}}</div>
+        <div><span><i class="bi bi-person"></i></span>{{username}}</div>
     <br>
 
     <form>
@@ -32,15 +32,15 @@
             </tr>
             <tr>
                 <td><label for="Name" class="form-label">會員姓名：</label></td>
-                <td><input id="Name" /></td>
+                <td><input id="Name" v-model="username" /></td>
             </tr>
             <tr>
                 <td><label for="phone" class="form-label">手機號碼：</label></td>
-                <td><input id="phone" /></td>
+                <td><input id="phone" v-model="phone" /></td>
             </tr>
             <tr>
-                <td><label for="phone" class="form-label" style="display:block;text-align:end;">地址：</label></td>
-                <td><input idr="phone" />
+                <td><label for="address" class="form-label" style="display:block;text-align:end;">地址：</label></td>
+                <td><input id="address" v-model="address" />
             </tr>
         </table>
         <br>
@@ -62,7 +62,10 @@
 
         let app = new Vue({
             el: "#app",
-            data: {
+            data: {        
+                username:"Jack",
+                address:"新北市土城區",
+                phone:"0986124563",
                 products: []
             },
             mounted: function () {
@@ -75,7 +78,6 @@
                     ).then(x => x.json()).then(z => self.products = z)
                 }
             }
-
         })
     </script>
 }

@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace FruitShopping.Models
 {
 	[Table("ShoppingCarts")]
-	[PrimaryKey(nameof(ShoppingCartId), nameof(ProductId),nameof(Id))]
+	[PrimaryKey(nameof(ShoppingCartId), nameof(ProductId),nameof(UserId))]
 	public class ShoppingCart
 	{
 		public ShoppingCart() { }
@@ -19,14 +19,15 @@ namespace FruitShopping.Models
 		[ForeignKey(nameof(ProductId))]
 		public int ProductId { get; set; }
 
-        [ForeignKey(nameof(IdentityUser))]
-		public string Id { get; set; }
+        [ForeignKey(nameof(Users))]
+		public int UserId { get; set; }
 
 		public int Quantity { get; set; }
 
+
 		public virtual Product Product { get; set; }
 
-		public virtual IdentityUser IdentityUser { get; set; }
+		public virtual Users users{ get; set; }
 
     }
 }

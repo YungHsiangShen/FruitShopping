@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - FruitShopping</title>
     @await RenderSectionAsync("Styles", required: false)
+	<link href="~/css/styles.min.css" rel="stylesheet" />
 </head>
 <body>
     <header>
@@ -50,6 +51,7 @@
             </div>
         </nav>
     </header>
+
     <div class="">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -65,8 +67,7 @@
         <div class="col"></div>
         </div>
     </footer>
-	
-
+	<script src="~/js/scripts.min.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

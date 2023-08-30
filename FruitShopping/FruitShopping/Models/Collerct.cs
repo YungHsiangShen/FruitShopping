@@ -7,19 +7,19 @@ using System.Runtime.InteropServices;
 namespace FruitShopping.Models
 {
 	[Table("Collects")]
-	[PrimaryKey(nameof(CollectId),nameof(ProductId),nameof(Id))]
+	[PrimaryKey(nameof(CollectId),nameof(ProductId),nameof(UserId))]
 	public class Collerct
 	{
 		public Collerct() { }
 		
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]			
 		public int CollectId { get; set; }
-				
+
+		[ForeignKey(nameof(Models.Users))]
+		public int UserId { get; set; }
+
 		public int ProductId { get; set; }
 		
-		[ForeignKey(nameof(IdentityUser))]
-		public string Id { get; set; }
-
-		public virtual IdentityUser IdentityUser { get; set; }
+		public virtual  Users Users { get; set; }
 	}
 }

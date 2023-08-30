@@ -8,7 +8,7 @@ namespace FruitShopping.Controllers
 	{
 		private readonly ILogger<HomeController> _logger;
 
-		public HomeController(ILogger<HomeController> logger)
+		public HomeController(ILogger<HomeController> logger, FruitShoppingDbContext context)
 		{
 			_logger = logger;
 		}
@@ -17,11 +17,11 @@ namespace FruitShopping.Controllers
 		{
 			return View();
 		}
-        public IActionResult About()
-        {
-            return View();
-        }
-        public IActionResult Privacy()
+		public IActionResult About()
+		{
+			return View();
+		}
+		public IActionResult Privacy()
 		{
 			return View();
 		}

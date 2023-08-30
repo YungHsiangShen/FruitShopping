@@ -15,7 +15,7 @@ namespace FruitShopping.Models
 		
 		[Column(TypeName ="nvarchar")]
 		[MaxLength(450)]
-		public string Id { get; set; }
+		public int Userid { get; set; }
 		
 		[ForeignKey(nameof(Product))]
 		public int ProductId { get; set; }

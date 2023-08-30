@@ -16,8 +16,8 @@ namespace FruitShopping.Models
 		[MaxLength(200)]
 		public string Address { get; set; }
 
-		[ForeignKey(nameof(IdentityUser))]
-		public string Id { get; set; }
+		[ForeignKey(nameof(Models.Users))]
+		public int UserId { get; set; }
 
 		[Column(TypeName ="nvarchar")]
 		[MaxLength (200)]
@@ -28,6 +28,6 @@ namespace FruitShopping.Models
 		[MaxLength(50)]
 		public string PaymentMethodType { get; set; } 
 		
-		public virtual IdentityUser IdentityUser { get; set; }
+		public virtual Users Users { get; set; }
 	}
 }

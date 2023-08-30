@@ -2,9 +2,9 @@
 
 namespace FruitShopping.Areas.Admin.Models.ViewModel
 {
-    public class ProductsManagershowDTO
+    public class ShowProductDTO
     {
-        public ProductsManagershowDTO() { }
+        public ShowProductDTO() { }
         public int ProductId { get; set; }
         public string ProductName { get; set; }
         public decimal CostPrice { get; set; }

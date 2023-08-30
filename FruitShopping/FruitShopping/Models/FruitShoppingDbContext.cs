@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FruitShopping.Models
 {
-	public class FruitShoppingDbContext :IdentityDbContext
+	public class FruitShoppingDbContext :DbContext
 	{
 		public FruitShoppingDbContext() { }
 
@@ -21,6 +21,8 @@ namespace FruitShopping.Models
 		public DbSet<PlaceOfOrigin> placeOfOrigins { get; set; }
 
 		public DbSet<ProductComment> ProductComments { get; set; }
+
+		public DbSet<Users> Users { get; set; }
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{

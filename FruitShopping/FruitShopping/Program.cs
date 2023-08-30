@@ -30,7 +30,7 @@ namespace FruitShopping
 
 			builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
 				.AddEntityFrameworkStores<FruitShoppingDbContext>();
-			
+
 			builder.Services.AddControllersWithViews();
 
 			var app = builder.Build();
